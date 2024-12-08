@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excuse Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #141E30, #243B55);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.08);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            text-align: center;
+        }
+
+        h1 {
+            font-weight: 700;
+            font-size: 2.5rem;
+            color: #f1f1f1;
+            margin-bottom: 1rem;
+        }
+
+        label {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            display: block;
+            color: #f1f1f1;
+        }
+
+        #topic {
+            margin-bottom: 1rem;
+            padding: 0.8rem;
+            width: 100%;
+            border-radius: 10px;
+            border: none;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+            background-color: #2C3E50;
+            color: #ffffff;
+        }
+
+        #generateExcuse {
+            background-color: #3498db;
+            color: #ffffff;
+            font-weight: bold;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 50px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        #generateExcuse:hover {
+            background-color: #2980b9;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        #excuseOutput {
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            font-style: italic;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .preset-buttons {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .preset-button {
+            background-color: #95a5a6;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 0.5rem 1.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .preset-button:hover {
+            background-color: #7f8c8d;
+            transform: translateY(-2px);
+        }
+
+        .copy-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .copy-icon {
+            cursor: pointer;
+            margin-left: 10px;
+            color: #ffffff;
+            transition: color 0.3s;
+        }
+
+        .copy-icon:hover {
+            color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Excuse Generator</h1>
+        <label for="topic">What do you need an excuse for?</label>
+        <input type="text" id="topic" class="form-control" placeholder="e.g., missing a meeting">
+        <div class="preset-buttons">
+            <button class="preset-button" onclick="setPreset('school')">School</button>
+            <button class="preset-button" onclick="setPreset('meeting')">Meeting</button>
+            <button class="preset-button" onclick="setPreset('birthday party')">Birthday Party</button>
+        </div>
+        <button id="generateExcuse" class="btn btn-lg mt-3">Generate Excuse</button>
+        <div id="excuseOutputContainer">
+            <p id="excuseOutput" class="mt-4"></p>
+            <div class="copy-container" id="copyContainer" style="display: none;">
+                <span>Copy:</span>
+                <i class="copy-icon fas fa-copy" onclick="copyToClipboard()"></i>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function setPreset(presetText) {
+            document.getElementById('topic').value = presetText;
+            document.getElementById('generateExcuse').click();
+        }
+
+        function copyToClipboard() {
+            const excuseText = document.getElementById('excuseOutput').innerText;
+            navigator.clipboard.writeText(excuseText).then(() => {
+                alert('Excuse copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+    </script>
+    <script src="/static/script.js"></script>
+</body>
+</html>
