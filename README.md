@@ -25,6 +25,18 @@ This project is a fun and practical web app that lets users input a situation an
 
 **4) Python:** For backend scripting and API integration.
 
+**License**
+
+This project is licensed under the **MIT License**.
+
+
+
+
+
+# Screentshot
+
+![image](https://github.com/user-attachments/assets/a46c51bd-9dd2-43a4-a9d2-2beaac94a13e)
+
 
 
 
